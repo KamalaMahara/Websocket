@@ -1,0 +1,35 @@
+{
+  "type": "module",
+  "name": "websocket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec node --loader ts-node/esm server.ts",
+    "start": "nodemon --loader ts-node/esm server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KamalaMahara/Websocket.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KamalaMahara/Websocket/issues"
+  },
+  "homepage": "https://github.com/KamalaMahara/Websocket#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "mongoose": "^9.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.3",
+    "nodemon": "^3.1.11"
+  }
+}
