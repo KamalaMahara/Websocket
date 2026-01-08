@@ -6,7 +6,7 @@ import { Server } from 'socket.io';
 let io: Server | undefined;
 function startServer() {
   connectDB(config.mongoUri as string)
-  const port = config.port || 6000
+  const port = config.port || 7000
   const server = app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
   })
