@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec node --loader ts-node/esm server.ts",
-    "build": "tsc",
+    "build": "tsc && cp -r src/views dist/src/views",
     "start": "node dist/server.js"
   },
   "repository": {
