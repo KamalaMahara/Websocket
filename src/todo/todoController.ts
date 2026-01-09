@@ -13,6 +13,7 @@ class Todo {
       socket.on("addTodo", (data) => this.handleAddTodo(socket, data))
       socket.on("deleteTodo", (data) => this.handleDeleteTodo(socket, data))
       socket.on("updateTodoStatus", (data) => this.handleUpdateTodoStatus(socket, data))
+      socket.on("fetchTodos", () => this.fetchTodos(socket))
     })
   }
   private async handleAddTodo(socket: Socket, data: ITodo) {
@@ -48,7 +49,7 @@ class Todo {
         return;
       }
       const todos = await todoModel.find({ status: Status.pending })
-      socket.emit("todo_response", {
+      socket.emit("todo_updated", {
         status: "success",
         data: todos
       })
@@ -65,14 +66,14 @@ class Todo {
       const { id, status } = data;
       const todo = await todoModel.findByIdAndUpdate(id, { status })
       if (!todo) {
-        socket.emit("todo_updated", {
+        socket.emit("todo_response", {
           status: "failed",
           message: "to do not found"
         })
         return;
       }
       const todos = await todoModel.find({ status: Status.pending })
-      socket.emit("todo_", {
+      socket.emit("todo_updated", {
         status: "success",
         data: todos
       })
@@ -81,6 +82,23 @@ class Todo {
         status: "failed", error
       })
 
+    }
+  }
+  private async fetchTodos(socket: Socket) {
+    try {
+      const todos = await todoModel.find({
+        status:
+          Status.pending
+      })
+      socket.emit("todo_updated", {
+        status: "success",
+        data: todos
+      })
+    }
+    catch (error) {
+      socket.emit("todo_response", {
+        status: "failed", error
+      })
     }
   }
 }
